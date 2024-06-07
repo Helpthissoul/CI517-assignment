@@ -13,8 +13,7 @@ int main(int argc, char* argv[])
     catch (exception e)
     {
         cout << "error: " << endl;
+        cout << "mam " << endl;
     }
     return 0;
 }
-
-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
