@@ -16,7 +16,7 @@ GraphicsEngine::GraphicsEngine() : fpsAverage(0), fpsPrevious(0), fpsStart(0), f
     if (nullptr == renderer)
         throw EngineException("Failed to create renderer", SDL_GetError());
 
-    // although not necessary, SDL doc says to prevent hiccups load it before using
+    
     if ((IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG) != IMG_INIT_PNG)
         throw EngineException("Failed to init SDL_image - PNG", IMG_GetError());
 
@@ -81,7 +81,7 @@ void GraphicsEngine::setVerticalSync(bool b) {
 
 void GraphicsEngine::setDrawColor(const SDL_Color& color) {
     drawColor = color;
-    SDL_SetRenderDrawColor(renderer, drawColor.r, drawColor.g, drawColor.b, 255);    // may need to be adjusted for allowing alpha
+    SDL_SetRenderDrawColor(renderer, drawColor.r, drawColor.g, drawColor.b, 255); 
 }
 
 void GraphicsEngine::setWindowSize(const int& w, const int& h) {
@@ -118,7 +118,7 @@ void GraphicsEngine::showInfoMessageBox(const std::string& info, const std::stri
 void GraphicsEngine::clearScreen() {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
-    SDL_SetRenderDrawColor(renderer, drawColor.r, drawColor.g, drawColor.b, 255);    // may need to be adjusted for allowing alpha
+    SDL_SetRenderDrawColor(renderer, drawColor.r, drawColor.g, drawColor.b, 255);    
 }
 
 void GraphicsEngine::showScreen() {
@@ -138,7 +138,7 @@ void GraphicsEngine::adjustFPSDelay(const Uint32& delay)
     }
 
     Uint32 fpsCurrent = 1000 / (SDL_GetTicks() - fpsStart);
-    fpsAverage = (fpsCurrent + fpsPrevious + fpsAverage * 8) / 10;    // average, 10 values / 10
+    fpsAverage = (fpsCurrent + fpsPrevious + fpsAverage * 8) / 10; 
     fpsPrevious = fpsCurrent;
 }
 
@@ -156,12 +156,9 @@ void GraphicsEngine::setDrawScale(const Vector2f& v) {
     SDL_RenderSetScale(renderer, v.x, v.y);
 }
 
-/* ALL DRAW FUNCTIONS */
-/* overloads explicitly call SDL funcs for better performance hopefully */
 
 void GraphicsEngine::drawRect(const SDL_Rect& rect)
 {
-    // const Rectangle2 *p = &rect;
     SDL_RenderDrawRect(renderer, &rect);
 }
 

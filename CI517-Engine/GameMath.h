@@ -126,12 +126,6 @@ struct Dimension2i {
 	Dimension2i(int w, int h) : w(w), h(h) {}
 };
 
-/**
-* Init srand() before to get different random values every time you start program
-*
-* @return
-*			a random integer value between "min" and "max", both inclusive
-*/
 inline int getRandom(int min, int max) {
 	return (int)(rand() % (max - min)) + min;
 }

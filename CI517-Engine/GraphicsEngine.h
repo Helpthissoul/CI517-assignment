@@ -2,7 +2,7 @@
 #include <string>
 #include <memory>
 #include <iostream>
-//code from xcube 2d
+
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
@@ -11,7 +11,7 @@
 #include "EngineCommon.h"
 #include "GameMath.h"
 
-/* ENGINE DEFAULT SETTINGS */
+
 static const int DEFAULT_WINDOW_WIDTH = 800;
 static const int DEFAULT_WINDOW_HEIGHT = 600;
 
@@ -68,16 +68,10 @@ public:
 
     void setDrawColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a);
     void fillRect(const SDL_Rect& rect);
-    /**
-    * Clears everything on the screen
-    * Call this before drawing anything to screen
-    */
+ 
     void clearScreen();
 
-    /**
-    * Displays everything rendered on the screen
-    * Call this method after you have finished drawing
-    */
+    
     void showScreen();
 
     void drawRect(const SDL_Rect&);
@@ -99,39 +93,20 @@ public:
 
 
     void setDrawColor(const SDL_Color&);
-    void setDrawScale(const Vector2f&);    // not tested
+    void setDrawScale(const Vector2f&);    
 
-    /**
-    * @param fileName - name of the icon file
-    */
+
     void setWindowIcon(const char* fileName);
     void setWindowSize(const int&, const int&);
     void setWindowTitle(const char* title);
     void setWindowTitle(const std::string&);
     void setFullscreen(bool);
     void setVerticalSync(bool);
-
-    /**
-    * Shows a message box with given info and title
-    *
-    * Note: this function will block the execution on
-    * thread where it was called
-    *
-    * @param info - the info to be shown
-    * @param title - title of the message box, may be left out
-    */
+   
     void showInfoMessageBox(const std::string& info, const std::string& title = "");
 
-    /**
-    * @return current window's dimension
-    */
     Dimension2i getCurrentWindowSize();
 
-    /**
-    * @return current display mode's resolution
-    *         since most displays use native (max) resolution
-    *         this returns maximum available (the one you can set) window size
-    */
     Dimension2i getMaximumWindowSize();
 
     void setFrameStart();

@@ -25,6 +25,8 @@ private:
     void renderUI();
     void renderPauseMessage() override;
 public:
+    SDL_Color randomColor;
     MyGame();
     ~MyGame();
+    void resume();
 };

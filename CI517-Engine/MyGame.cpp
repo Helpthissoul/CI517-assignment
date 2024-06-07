@@ -7,7 +7,7 @@ MyGame::MyGame() : AbstractGame(), numKeys(15), box{ 20, 20, 300, 300 }, eventEn
 {
 	gfx->setVerticalSync(true);
 
-	// Draw points on random location
+
 	for (int i = 0; i < numKeys; i++) {
 		std::shared_ptr<GameKey> k = std::make_shared<GameKey>();
 		k->isAlive = true;
@@ -28,22 +28,25 @@ MyGame::~MyGame()
 void MyGame::handleKeyEvents()
 {
 	eventEngine.pollEvents();
-	std::cout << "ESC key pressed" << std::endl;
 	if (eventEngine.isPressed(Key::ESC)) {
-		eventEngine.togglePause();
-		if (eventEngine.isPaused()) {
-			pause();
-			renderPauseMessage();
+		paused = !paused;
+		if (paused) {
+			randomColor = getRandomColor(0, 225);
 			std::cout << "stopped" << std::endl;
+			renderPauseMessage();
 		}
-		else {
+		else
+		{
 			resume();
 		}
+			
+		
+		
 	}
 
 }
 void MyGame::update() {
-	if (eventEngine.isPaused()) {
+	if (paused) {
 		return;
 	}
 }
@@ -60,19 +63,21 @@ void MyGame::render()
 		if (key->isAlive)
 			gfx->drawCircle(key->pos, 5);
 
-	if (eventEngine.isPaused()) {
+	if (eventEngine.isPressed(Key::ESC)) {
+		std::cout << "done" << std::endl;
 		renderPauseMessage();
+		return;
 	}
 }
 void MyGame::renderUI(){}
 void MyGame::renderPauseMessage() {
-	gfx->setDrawColor(0, 0, 0, 128);
+	gfx->setDrawColor(255, 255, 255, 1);
 	SDL_Rect overlayRect = { 0, 0, 800, 600 };
 	gfx->fillRect(overlayRect);
 
 	TTF_Font* font = TTF_OpenFont(nullptr, 24);
 	SDL_Color textColor = { 255, 255, 255, 1 };
-	SDL_Texture* textTexture = gfx->createTextTexture("Game Paused", textColor, font);
+	SDL_Texture* textTexture = gfx->createTextTexture("YOUR_NAME-CI517-2023-24", textColor, font);
 	if (!textTexture) {
 		TTF_CloseFont(font);
 		return;
@@ -89,4 +94,7 @@ void MyGame::renderPauseMessage() {
 
 	SDL_DestroyTexture(textTexture);
 	TTF_CloseFont(font);
+}
+void MyGame::resume() {
+	!paused;
 }

@@ -1,4 +1,5 @@
 #include "AbstractGame.h"
+#include "EventEngine.h"
 #include <iostream>
 using namespace std;
 
@@ -36,7 +37,7 @@ int AbstractGame::runMainLoop() {
 
         if (!paused) {
             update();
-            gameTime += 0.016; // 60 times a sec
+            gameTime += 0.016;
         }
         else if (paused) {
             cout << "Game is paused" << endl;
@@ -46,7 +47,7 @@ int AbstractGame::runMainLoop() {
         gfx->clearScreen();
         render();
         gfx->showScreen();
-        gfx->adjustFPSDelay(16); // atm hardcoded to ~60 FPS
+        gfx->adjustFPSDelay(16);
 
 }
     cout << "exiting game loop" << endl;

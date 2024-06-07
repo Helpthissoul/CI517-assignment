@@ -29,8 +29,6 @@ class EventEngine {
 private:
     static const int NUM_KEYS = Key::LAST;
     static const int NUM_BUTTONS = Mouse::BTN_LAST;
-    bool running;
-    bool paused;
     SDL_Event event;
     bool keys[NUM_KEYS];
     bool buttons[NUM_BUTTONS];
@@ -42,37 +40,27 @@ public:
      EventEngine();
     ~EventEngine();
 
-    /**
-    * Equivalent to calling SDL_PollEvent()
-    */
     void pollEvents();
+    
 
+    bool running;
+    bool paused;
     bool isPressed(Key);
     bool isPressed(Mouse);
 
-    /**
-     * Software emulation of keypresses
-     */
     void setPressed(Key);
     void setPressed(Mouse);
 
     void setMouseRelative(bool);
 
-    /**
-    * Returns mouse's delta position
-    * It's the difference between current and
-    * previous mouse positions
-    *
-    */
     Point2 getMouseDPos();
 
-    /**
-    * Returns current mouse position relative to the window
-    */
     Point2 getMousePos();
 
     bool isPaused() const { return paused; }
     void togglePause();
+
+   
 };
 
 #endif // EVENTENGINE_H

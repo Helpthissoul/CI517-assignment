@@ -1,5 +1,6 @@
 #include "EventEngine.h"
 
+
 EventEngine::EventEngine() : running(true), paused(false) {
     for (int i = 0; i < Key::LAST; ++i) {
         keys[i] = false;
@@ -30,6 +31,7 @@ void EventEngine::pollEvents() {
             std::cout << "toggled" << std::endl;
             togglePause();
             
+            
         }
     }
 }
@@ -49,7 +51,7 @@ void EventEngine::updateKeys(const SDL_Keycode& key, bool keyDown) {
     case SDLK_ESCAPE:    index = Key::ESC; break;
     case SDLK_SPACE:    index = Key::SPACE; break;
     default:
-        return;    // we don't care about other keys, at least now
+        return;
     }
 
     keys[index] = keyDown;
@@ -94,3 +96,4 @@ Point2 EventEngine::getMousePos() {
     SDL_GetMouseState(&pos.x, &pos.y);
     return pos;
 }
+
