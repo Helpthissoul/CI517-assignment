@@ -47,7 +47,7 @@ int AbstractGame::runMainLoop() {
         gfx->clearScreen();
         render();
         gfx->showScreen();
-        gfx->adjustFPSDelay(16);
+        gfx->adjustFPSDelay(16);    
 
 }
     cout << "exiting game loop" << endl;

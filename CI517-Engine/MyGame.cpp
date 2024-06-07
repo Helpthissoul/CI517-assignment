@@ -77,7 +77,7 @@ void MyGame::renderPauseMessage() {
 
 	TTF_Font* font = TTF_OpenFont(nullptr, 24);
 	SDL_Color textColor = { 255, 255, 255, 1 };
-	SDL_Texture* textTexture = gfx->createTextTexture("YOUR_NAME-CI517-2023-24", textColor, font);
+	SDL_Texture* textTexture = gfx->createTextTexture("Carlos Cerrudo-CI517-2023-24", textColor, font);
 	if (!textTexture) {
 		TTF_CloseFont(font);
 		return;
